@@ -39,18 +39,22 @@ let insertFlight = (item) => {
 				'destination': "pkr",
 				'departure': new Date('December 17, 1995 03:24:00')
 			};
-			return new Flights(data).save();
+			return new Flights(item).save();
 		});
 }
 
-// add student
-// let addStudent = (student) => {
-// 	return mongoose.connect(url)
-// 	.then((db) => {
-// 		return new Student(student).save();
-// 	});
+// filter flight
 
-// }
+let filterFlights = (filter_query) => {
+	console.log('Filter Query --');
+	console.log(filter_query);
+	return mongoose.connect(url)
+		.then(db => {
+			// filter data based on key value
+			const data = Flights.find(filter_query);
+			return data;
+		});
+}
 
 
 
@@ -89,5 +93,6 @@ let insertFlight = (item) => {
 
 module.exports = {
 	getFlights,
+	filterFlights,
 	insertFlight
 }

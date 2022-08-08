@@ -21,44 +21,50 @@
 
       <div class="row mt-5 ml-5">
         <div class="col-4">
-          <div class="row">
-            <div class="col-4">
-              <label for="city">Destination City: </label>
-            </div>
-            <div class="col-4">
-                <input type="number" id="city" name="city" placeholder="Ex. Toronto">
-            </div>
+          <form action="/lambtonflights/list" method="get">
+            <div class="row">
+              <div class="col-4">
+                <label for="destination">To City: </label>
+              </div>
+              <div class="col-4">
+                  <input type="text" id="destination" name="destination" placeholder="Ex. Toronto">
+              </div>
 
-            <div class="col-4">
-                <input type="submit" value="Run Query">
+              <div class="col-4">
+                  <input type="submit" value="Run Query">
+              </div>
             </div>
-          </div>
+        </form>
         </div>
         <div class="col-4">
-          <div class="row">
-            <div class="col-4">
-              <label for="flightDate">Check flight on given date: </label>
+          <form action="/lambtonflights/list" method="get">
+            <div class="row">
+              <div class="col-4">
+                <label for="flightDate">Check flight on given date: </label>
+              </div>
+              <div class="col-4">
+                  <input type="date" id="flightDate" name="flightDate" placeholder="Ex. 2020-07-12">
+              </div>
+              <div class="col-4">
+                  <input type="submit" value="Run Query">
+              </div>
             </div>
-            <div class="col-4">
-                <input type="date" id="flightDate" name="flightDate" placeholder="Ex. 2020-07-12">
-            </div>
-            <div class="col-4">
-                <input type="submit" value="Run Query">
-            </div>
-          </div>
+          </form>
         </div>
         <div class="col-4">
-          <div class="row">
-            <div class="col-4">
-              <label for="flightNo">Check Total Flights on given date: </label>
+          <form action="/lambtonflights/list" method="get">
+            <div class="row">
+              <div class="col-4">
+                <label for="flightno">Flight No </label>
+              </div>
+              <div class="col-4">
+                  <input type="Number" id="flightno" name="flightno" placeholder="Ex. 11234">
+              </div>
+              <div class="col-4">
+                  <input type="submit" value="Run Query">
+              </div>
             </div>
-            <div class="col-4">
-                <input type="submit" value="Run Query">
-            </div>
-            <div class="col-4">
-                <input type="text" hidden value="totalFlights">
-            </div>
-          </div>
+          </form>
         </div>
       </div>
 
@@ -70,7 +76,6 @@
               <th>Flight Duration</th>
               <th>Source</th>
               <th>Destination</th>
-              <th>Courses</th>
               <th>Departure Time</th>
             </tr>
           </thead>
@@ -83,7 +88,7 @@
                 <td><%= item.duration%></td>
                 <td><%= item.source%></td>
                 <td><%= item.destination%></td>
-                <td><%= item.departure%></td>
+                <td><%= new Date(item.departure).toLocaleString()%></td>
           </tr>
 			<%})} %>
           </tbody>
