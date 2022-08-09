@@ -78,6 +78,19 @@ app.get('/getflight', (req, res) => {
 });
 
 
+
+
+app.get('/delete', (req, res) => {
+	console.log('delete api request called.');
+	console.log(req.query);
+	console.log('-----------------');
+	let filter_query = {};
+	flights.deleteRecord(filter_query).then(output => {
+		res.send(output);
+	});
+});
+
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));

@@ -44,21 +44,6 @@ router.get('/list', function (req, res, next) {
 	console.log(req.query);
 	console.log('ui-----------');
 	let base_url = 'http://127.0.0.1:3001/getflight';
-	// if ("flightno" in req.query) {
-	// 		base_url += ("?flightno=" + req.params.flighno);
-
-	// }
-	// else if ("destination" in req.query) {
-		
-	// 		base_url += ("?destination=" + req.params.destination);
-	// }
-	// else if ("departure" in req.query) {
-
-	// 		base_url += ("?departure=" + req.params.departure);
-	// }
-	// console.log('params');
-	// console.log(base_url);
-	// console.log('params');
 	request({url: base_url, qs:req.query}, function (err, response, body) {
 		if (!err && response.statusCode == 200) {
 			console.log('data received');
@@ -67,6 +52,25 @@ router.get('/list', function (req, res, next) {
 		}
 		else {
  		 	res.render('flights.ejs', { title: 'List', data });
+		}
+	});
+
+});
+
+
+
+// lambtonflights/delete
+router.get('/delete', function (req, res, next) {
+
+	let data = [];
+	let base_url = 'http://127.0.0.1:3001/delete';
+	request({url: base_url, qs:req.query}, function (err, response, body) {
+		if (!err && response.statusCode == 200) {
+			data = JSON.parse(body);
+			res.redirect('/lambtonflights/list');
+		}
+		else {
+			res.redirect('/lambtonflights/list');
 		}
 	});
 

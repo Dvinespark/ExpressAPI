@@ -76,16 +76,16 @@ let filterFlights = (filter_query) => {
 
 
 // delete student from database
-// let removeStudent = (id) => {
-// 	return mongoose.connect(url)
-// 		.then((db) => {
-// 			const data = Student.findOneAndRemove({ id: id }, (err) => {
-// 				console.log(err);
-// 				return false;
-// 			});
-// 			return true;
-// 		});
-// }
+let deleteRecord = (flight_query) => {
+	return mongoose.connect(url)
+		.then((db) => {
+			const data = Flights.findOneAndRemove(flight_query, (err) => {
+				console.log(err);
+				return false;
+			});
+			return true;
+		});
+}
 
 
 // setting id for new insertion
@@ -109,5 +109,6 @@ let filterFlights = (filter_query) => {
 module.exports = {
 	getFlights,
 	filterFlights,
-	insertFlight
+	insertFlight,
+	deleteRecord
 }
