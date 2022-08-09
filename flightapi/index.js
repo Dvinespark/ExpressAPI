@@ -40,26 +40,35 @@ app.post('/addflight', (req, res) => {
 app.get('/getflight', (req, res) => {
 	// flights.insertFlight();
 
-	console.log('get request from app.');
+	console.log('get request from app. printing filter...');
+	console.log(req.query);
+	console.log('-----------------')
 	let data = [];
 	let filter_query = {};
-	if ("flightno" in req.params) {
-		filter_query = {
-			'flighno': req.params.source
-		};
+	if ("flightno" in req.query) {
+		if (req.query.flightno !== '') {
+			
+			filter_query = {
+				'flightno': req.query.flightno
+			};
+		}
 
 	}
-	else if ("destination" in req.params) {
+	else if ("destination" in req.query) {
 		
-		filter_query = {
-			'destination': req.params.destination
-		};
+		if (req.query.destination !== '') {
+			filter_query = {
+				'destination': req.query.destination
+			};
+		}
 	}
-	else if ("departure" in req.params) {
+	else if ("departure" in req.query) {
 
-		filter_data = {
-			'departure': req.params.flight_date
-		};
+		if (req.query.departure !== '') {
+			filter_query = {
+				'departure': req.query.departure
+			};
+		}
 	}
 
 	flights.filterFlights(filter_query).then(items => {

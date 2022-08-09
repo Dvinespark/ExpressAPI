@@ -48,6 +48,21 @@ let insertFlight = (item) => {
 let filterFlights = (filter_query) => {
 	console.log('Filter Query --');
 	console.log(filter_query);
+
+	// logic for date part
+	if ('departure' in filter_query) {
+
+		let start_date = new Date(filter_query.departure);
+		let end_date = new Date(start_date);
+		end_date.setDate(start_date.getDate() + 1);
+		filter_query =
+			{
+				"departure" : {"$gte": start_date,
+					"$lt": end_date
+				}
+			  }
+	}
+
 	return mongoose.connect(url)
 		.then(db => {
 			// filter data based on key value

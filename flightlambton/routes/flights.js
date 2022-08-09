@@ -40,23 +40,26 @@ router.post('/', function (req, res, next) {
 router.get('/list', function (req, res, next) {
 
 	let data = [];
+	console.log('ui-----------');
+	console.log(req.query);
+	console.log('ui-----------');
 	let base_url = 'http://127.0.0.1:3001/getflight';
-	if ("flightno" in req.params) {
-			base_url += ("?flightno=" + req.params.flighno);
+	// if ("flightno" in req.query) {
+	// 		base_url += ("?flightno=" + req.params.flighno);
 
-	}
-	else if ("destination" in req.params) {
+	// }
+	// else if ("destination" in req.query) {
 		
-			base_url += ("?destination=" + req.params.destination);
-	}
-	else if ("departure" in req.params) {
+	// 		base_url += ("?destination=" + req.params.destination);
+	// }
+	// else if ("departure" in req.query) {
 
-			base_url += ("?departure=" + req.params.departure);
-	}
-	console.log('params');
-	console.log(base_url);
-	console.log('params');
-	request(base_url, function (err, response, body) {
+	// 		base_url += ("?departure=" + req.params.departure);
+	// }
+	// console.log('params');
+	// console.log(base_url);
+	// console.log('params');
+	request({url: base_url, qs:req.query}, function (err, response, body) {
 		if (!err && response.statusCode == 200) {
 			console.log('data received');
 			data = JSON.parse(body);
