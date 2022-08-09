@@ -80,7 +80,7 @@ app.get('/getflight', (req, res) => {
 
 
 
-app.get('/delete', (req, res) => {
+app.delete('/delete', (req, res) => {
 	console.log('delete api request called.');
 	console.log(req.query);
 	console.log('-----------------');

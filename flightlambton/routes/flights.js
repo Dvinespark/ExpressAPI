@@ -64,7 +64,7 @@ router.get('/delete', function (req, res, next) {
 
 	let data = [];
 	let base_url = 'http://127.0.0.1:3001/delete';
-	request({url: base_url, qs:req.query}, function (err, response, body) {
+	request.delete({url: base_url, qs:req.query}, function (err, response, body) {
 		if (!err && response.statusCode == 200) {
 			data = JSON.parse(body);
 			res.redirect('/lambtonflights/list');
